@@ -1,0 +1,27 @@
+Existing approaches to reinforcement learning rely on a fixed
+state-action space and reward function that the agent is trying to
+maximize.  During training, the agent is repeatedly reset to a
+predefined initial state or set of initial states.  For example, in
+the classic RL Mountain Car domain, the agent starts at some point in
+the valley, continues until it reaches the top of the valley and then
+resets to somewhere else in the same valley. Learning in this regime
+is akin to the learning problem faced by Bill Murray in the 1993 movie
+{\em Groundhog Day} in which he repeatedly relives the same day, until
+he discovers the optimal policy and escapes to the next day.  In a
+more realistic formulation for an RL agent, every day is a new day
+that may have similarities to the previous day, but the agent never
+encounters the same state twice.  This formulation is a natural fit
+for robotics problems in which a robot is placed in a room in which it
+has never previously been, but has seen similar rooms with similar
+objects in the past.  We formalize this problem as learning to act in
+a {\em domain}. A domain is defined by the tuple $(X, A, P)$, where
+$X$ is a state representation, $A$ is an action set, and $P$ is a
+probability distribution of MDPs with different state spaces, reward
+functions, and transition dynamics, but the same state representation
+$X$ and action set $A$. The agent samples an MDP from some unknown
+distribution of related MDPs and must learn to behave well under the
+distribution of MDPs. The agent observes samples from the MDP
+distribution and at test time is evaluated on a new set of MDP samples
+drawn from the same distribution, focusing the evaluation on the
+agent's ability to generalize.
+
