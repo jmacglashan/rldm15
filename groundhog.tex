@@ -23,14 +23,11 @@
 \maketitle
 
 \begin{abstract}
-Existing approaches to reinforcement learning rely on a fixed state-action space and reward function that the agent is trying to maximize. Often during training, the agent is reset to a predefined initial state or set of initial states. For example, in the classic RL Mountain Car domain \cite{}, the agent starts at some point in the valley, continues until it reaches the top of the valley and then resets to somewhere else in the same valley. Learning in this domain is akin to the learning problem faced by Bill Murray in the 1993 movie {\em Groundhog Day} in which he repeatedly relives the same day, until he discovers the optimal policy and escapes to the next day. Instead, a more natural formulation for many problems is that the agent samples an MDP from some unknown distribution of related MDPs and must learn to behave well under the distribution of MDPs. In our analogy every day is a new day that may have similarities to the previous day but the agent never encounters the same state twice. Given a new MDP drawn from the same distribution, we would like the agent to learn to solve it as quickly as possible. This formulation is a natural fit for robotics problems in which a robot is placed in a room in which it has never previously been, but has seen similar rooms with similar objects in the past. 
+Existing approaches to reinforcement learning rely on a fixed state-action space and reward function that the agent is trying to maximize. Often during training, the agent is reset to a predefined initial state or set of initial states. For example, in the classic RL Mountain Car domain, the agent starts at some point in the valley, continues until it reaches the top of the valley and then resets to somewhere else in the same valley. Learning in this domain is akin to the learning problem faced by Bill Murray in the 1993 movie {\em Groundhog Day} in which he repeatedly relives the same day, until he discovers the optimal policy and escapes to the next day. Instead, a more natural formulation for many problems is that the agent samples an MDP from some unknown distribution of related MDPs and must learn to behave well under the distribution of MDPs. In our analogy every day is a new day that may have similarities to the previous day but the agent never encounters the same state twice. Given a new MDP drawn from the same distribution, we would like the agent to learn to solve it as quickly as possible. This formulation is a natural fit for robotics problems in which a robot is placed in a room in which it has never previously been, but has seen similar rooms with similar objects in the past. 
 
 We formalize this problem as learning to act in a {\em domain}. A domain is defined by the tuple $(X, A, P)$, where $X$ is a state representation, $A$ is an action set, and $P$ is a probability distribution of MDPs with different state spaces, reward functions, and transition dynamics, but the same state representation $X$ and action set $A$. In principle, $P$ could have such a large variation that nothing learned in one MDP drawn from it is useful for another; however, we are interested in domains in which there strong commonalities. For example, in the real world, no two rooms may be the same, but physical and social constraints entail similarity in the mechanics of objects such as light switches and door knobs; we would like are agent to learn in this types of scenarios.
 
 By formalizing the problem in this way, we are able to focus the learning problem to generalizing its knowledge to states it's never previously seen rather than overfitting to a single set of states and reward function. Focusing on generalization suggests a set of evaluation metrics in which at training time the agent learns from i.i.d. samples from the MDP distribution and at test time is evaluated on a new set of i.i.d. MDP samples drawn from the same distribution. In this setting there are two key problems: (1) learning to plan and (2) learning to learn. In learning to plan, the agent always knows the transition dynamics for each MDP; however, the agent can exploit its knowledge from solving previous MDPs from the distribution to more efficiently find good solutions in new MDPs. In learning to learn, the agent does not know the transition dynamics for each MDP, but can use knowledge from learning in previous MDPs to learn a portable model or bias its exploration through the state space. In this work, we formally describe this paradigm, describe how existing research fits into it, and present.
-
-
-
 
 
 
@@ -48,33 +45,6 @@ Meta-learning, transfer learning, learning to plan,
 
 \startmain % to start the main 1-4 pages of the submission.
 
-\section{Introduction}
-
-\begin{itemize}
-\item abstract rephrasing
-\item 5-state chain Meta-RL illustrative example
-\item summary of what we will review
-\end{itemize}
-
-\section{Problem Definition}
-\begin{itemize}
-\item overall problem definition
-\item RL instantiation (true transition dynamics unknown)
-\item planning instantiation (true transition dynamics provided)
-\item evaluation metrics 
-\end{itemize}
-
-\section{Approaches}
-\subsection{Action Priors}
-\subsection{Meta-RL}
-
-\section{Related Work}
-\subsection{Mode-based RL}
-\subsection{Bayesian RL}
-\subsection{Transfer Learning}
-\subsection{Skill learning}
-
-
-\section{Conclusion}
+\input{extended}
 
 \end{document}
