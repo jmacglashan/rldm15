@@ -9,22 +9,29 @@ By formalizing the learning problem in this way, we are able to focus research o
 
 
 \section{Problem Definition}
+Classic reinforcement learning (RL) problems are formulated as a trying to learn a (near-)optimal policy---a mapping from states to actions---in a Markov decision process (MDP). An MDP is defined by the tuple $(S, A, T, R)$, where $S$ is the state space, a set of states in which the agent can make decions; $A$ is the set of actions the agent can take; $T(s' | s, a)$ is the transition dynamics, which specifies the probability of transitioning to state $s'$ after taking action $a$ in state $s$; and $R(s, a, s')$ is the reward function, which specifies the reward received by the agent for taking action $a$ in state $s$ and then transitioning to state $s'$. Although there are other formulations, a policy $\pi : S \rightarrow A$ is typically considered optimal if following it maximizes the expected discounted future reward from each state $E \left[ \sum_{t=0}^{\infty} \gamma^t r_t \mid s, \pi \right]$, where $\gamma \in [0, 1]$ is a discount factor specifying how much the agent prefers immediate rewards over more distant rewards; $r_t$ is the reward received at time $t$; and $s$ is the state at time zero.
+
 \begin{itemize}
 \item overall problem definition
-\item RL instantiation (true transition dynamics unknown)
+\item OO-MDP plug for representation
 \item planning instantiation (true transition dynamics provided)
+\item RL instantiation (true transition dynamics unknown)
 \item evaluation metrics 
 \end{itemize}
 
 \section{Approaches}
-\subsection{Action Priors}
+\subsection{Goal-directed Action Priors (Affordances)}
 \subsection{Meta-RL}
 
 \section{Related Work}
 \subsection{Model-based RL}
+Learning a protable model (or model prior) over the distribution of MDPs is extremely powerful because it allows the agent plan out solutions to each novel situation without much needed exploration. Only tells part of the story, because it defers to a good planner being available, which may be difficult for complex domains. Therefore, model-learning transitions into the learning to plan problem.
 \subsection{Bayesian RL}
+Directly reasons over the distribution of MDPs and performs Bayes optimal learning. However, planning in this paradiagm is extremely complex and does not scale well. Like Model-based RL could substantially benefit from learning to plan.
 \subsection{Transfer Learning}
+Most RL transfer work focuses on transferring knowledge from a single or set of source tasks to a single target task. Here we are interested in generalized performance across a distirbution of tasks.
 \subsection{Skill learning}
+Most option learning work is limited to the same state space with different reward functions and there have been some negative results for learning with options. Current open problem with some success is learning protable options. State space abstraction+skill learning promising.
 
 
 \section{Conclusion}
