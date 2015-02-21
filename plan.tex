@@ -4,7 +4,7 @@ the large state space and the very large set of possible
 tasks~\citep{bollini12,knepper13}.  A powerful and flexible robot such
 as a mobile manipulator in the home has a very large set of possible
 actions, any of which may be relevant depending on the current goal
-(for example, robots assembling furinture~\citep{knepper13} or baking
+(for example, robots assembling furniture~\citep{knepper13} or baking
 cookies~\citep{bollini12}.)  When a robot is manipulating objects in
 an environment, an object can be placed anywhere in a large set of
 locations.  The size of the state space increases exponentially with
@@ -21,12 +21,10 @@ actions.
 \centering
 \includegraphics[width=0.2\linewidth]{figures/smelt_small.jpg}
 \includegraphics[width=0.2\linewidth]{figures/smelt_large.jpg}
-\caption{Two different problems from the same domain, where the
-  agent's goal is to smelt the gold in the furnace while avoiding the
-  lava.  Our agent is unable to solve the problem on the right before
-  learning because the state/action space is too large (since it can
-  place the gold block anywhere).  After learning, it can quickly
-  solve the larger problem.\label{fig:example}}
+\caption{Two different versions of the gold smelting task.
+  The task on the right is only able to be solved after learning in the
+  simpler version of the left because the state space is too large.
+  \label{fig:example}}
 \end{figure}
 
 To confront this state-action space explosion, prior work has explored
@@ -37,20 +35,20 @@ they add non-primitive actions to the planner which {\em increase} the
 branching factor of the state-action space.  The resulting augmented
 space is even larger, which can have the paradoxical effect of
 increasing the search time for a good policy~\cite{Jong:2008zr}.
-Deterministic forward-search algorithms like hierarchical task
-networks (HTNs)~\citep{Nau:1999:SSH:1624312.1624357}, and temporal
-logical planning
-(TLPlan)~\citep{Bacchus95usingtemporal,Bacchus99usingtemporal}, add
-knowledge to the planner that greatly increases planning speed, but do
-not generalize to stochastic domains. Additionally, the knowledge
-provided to the planner by these methods is quite extensive, reducing
-the agent's autonomy and must be manually supplied by the designer.
+%Deterministic forward-search algorithms like hierarchical task
+%networks (HTNs)~\citep{Nau:1999:SSH:1624312.1624357}, and temporal
+%logical planning
+%(TLPlan)~\citep{Bacchus95usingtemporal,Bacchus99usingtemporal}, add
+%knowledge to the planner that greatly increases planning speed, but do
+%not generalize to stochastic domains. Additionally, the knowledge
+%provided to the planner by these methods is quite extensive, reducing
+%the agent's autonomy and must be manually supplied by the designer.
 
 To address these issues, we learn action
 priors that are conditioned on the current state and goal
 from training MDPs drawn from a distribution. Because we
 condition on both the state and goal description, we refer to this
-goal-based action prior as a knowlege base of {\em affordances}.
+goal-based action prior as a knowledge base of {\em affordances}.
 Affordances enable the robot to prune irrelevant actions from the 
 search space on a
 state-by-state basis based on the agent's current goal and focus on
