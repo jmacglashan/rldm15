@@ -50,46 +50,39 @@ To address these issues, we augment an Object Oriented Markov Decision
 Process (OO-MDP) with a specific type of action prior conditioned on
 the current state and an abstract goal description.  Because we
 condition on both the state and goal description, we refer to this
-goal-based action prior as a knowlege base of {\em affordances}.
-Affordances were originally proposed by \citet{gibson77} as action
-possibilities prescribed by an agent's capabilities in an environment.
-%Affordances focus an agent's attention on aspects of the environment that
-%are most relevant to solving its current goal and avoid exploration of irrelevant parts of the
-%world.
-We rigorously formalize the notion of affordances as a prior on
-actions conditioned on features of the current state as well as the
-robot's goal.  Affordances enable the robot to prune irrelevant
-actions on a state-by-state basis based on the agent's current goal
-and focus on the most promising parts of the state space.  Affordances
-can be specified by hand or alternatively learned through experience
-in related problems, making them a concise, transferable, and
-learnable means of representing useful planning knowledge. Our
-experiments demonstrate that affordances provide dramatic improvements
-for a variety of planning tasks compared to baselines in simulation,
-and are applicable across different state spaces.  Moreover, while
-manually provided affordances outperform baselines, affordances
-learned through experience yield even greater improvements.We conduct
-experiments in the game Minecraft, which has a very large state-action
-space, and on a real-world robotic cooking assistant.
-Figure~\ref{fig:example} shows an example of two problems from the
-same domain in the game Minecraft; the agent learns on randomly
-generated problems and tests on new problems from the same domain that
-it has never previously encountered. 
+goal-based action prior as a knowlege base of {\em affordances}.  We
+rigorously formalize the notion of affordances as a prior on actions
+conditioned on features of the current state as well as the robot's
+goal.  Affordances enable the robot to prune irrelevant actions on a
+state-by-state basis based on the agent's current goal and focus on
+the most promising parts of the state space.  Affordances can be
+specified by hand or alternatively learned through experience in
+related problems, making them a concise, transferable, and learnable
+means of representing useful planning knowledge. Our experiments
+demonstrate that affordances provide dramatic improvements for a
+variety of planning tasks compared to baselines in simulation, and are
+applicable across different state spaces.  Moreover, while manually
+provided affordances outperform baselines, affordances learned through
+experience yield even greater improvements.We conduct experiments in
+the game Minecraft, which has a very large state-action space, and on
+a real-world robotic cooking assistant.  Figure~\ref{fig:example}
+shows an example of two problems from the same domain in the game
+Minecraft; the agent learns on randomly generated problems and tests
+on new problems from the same domain that it has never previously
+encountered.
 
 
- To learn affordances,
-we provide a set of training worlds from the domain ($W$), for which
-the optimal policy, $\pi$, may be tractably computed using existing
-planning methods. Then, we compute the maximum likelihood estimate of the
-parameter vector $\theta_i$ for each action using the policy.
-
-During the learning phase, the agent learns which actions are useful
-under different conditions. At test time, the agent will see
-different, randomly generated worlds from the same domain, and use the
-learned affordances to increase its speed at inferring a plan.  For
-simplicity, our learning process uses a strict separation between
-training and test; after learning is complete our model parameters
-remain fixed.
+To learn affordances, we provide a set of training worlds from the
+domain ($W$), for which the optimal policy, $\pi$, may be tractably
+computed using existing planning methods. Then, we compute the maximum
+likelihood estimate of the parameter vector $\theta_i$ for each action
+using the policy.  During the learning phase, the agent learns which
+actions are useful under different conditions. At test time, the agent
+will see different, randomly generated worlds from the same domain,
+and use the learned affordances to increase its speed at inferring a
+plan.  For simplicity, our learning process uses a strict separation
+between training and test; after learning is complete our model
+parameters remain fixed.
 
 We evaluate our approach using the game Minecraft.  Minecraft is a 3-D
 blocks game in which the user can place, craft, and destroy blocks of
@@ -99,18 +92,18 @@ scientific graphing
 calculators\footnote{https://www.youtube.com/watch?v=wgJfVRhotlQ}.
 Minecraft serves as a model for robotic tasks such as cooking
 assistance, assembling items in a factory, object retrieval, and
-complex terrain traversal.
-
-Our experiments consisted of five common tasks in Minecraft, including
-constructing bridges over trenches, smelting gold, tunneling through
-walls, basic path planning, and digging to find an object.  We tested
-on randomized worlds of varying size and difficulty. The generated
-test worlds varied in size from tens of thousands of states to
-hundreds of thousands of states.  The agent learned affordances from a
-training set consisting of 25 simple state spaces of each map type
-(100 total maps), each approximately a 1,000-10,000 state world. We
-conducted all tests with a single knowledge base. Learning this knowledge base
-took approximately one hour run in parallel on a computing grid. 
+complex terrain traversal.  Figure~\ref{fig:example} shows two scenes
+from Minecraft.  Our experiments consisted of five common tasks in
+Minecraft, including constructing bridges over trenches, smelting
+gold, tunneling through walls, basic path planning, and digging to
+find an object.  We tested on randomized worlds of varying size and
+difficulty. The generated test worlds varied in size from tens of
+thousands of states to hundreds of thousands of states.  The agent
+learned affordances from a training set consisting of 25 simple state
+spaces of each map type (100 total maps), each approximately a
+1,000-10,000 state world. We conducted all tests with a single
+knowledge base. Learning this knowledge base took approximately one
+hour run in parallel on a computing grid.
 
 
 We use Real-Time Dynamic Programming (RTDP)~\cite{barto95} as our
