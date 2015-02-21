@@ -103,8 +103,8 @@ the optimal action.
 During the learning phase, the agent learns which
 actions are useful under different conditions. At test time, the agent
 will see different, randomly generated worlds from the same domain,
-and use the learned affordances to increase its speed at inferring a
-plan. 
+and use the learned affordances to increase its speed at finding a
+policy. 
 For simplicity, our learning process uses a strict separation
 between training and test; after learning is complete our model
 parameters remain fixed for the entire test time. 
@@ -156,8 +156,8 @@ in terms of average number of Bellman updates in RTDP, the average
 cost of the policy found after planning termination, and the average
 amount of CPU time. In all cases, planning with learned affordances
 performed best, then expert performance, and finally the baseline
-performed worst. Although RTDP converge to the optimal policy in the
-limit, its average cost was worse than the other baselines because
+performed worst. Although RTDP converges to the optimal policy in the
+limit, its average policy cost was worse than the other methods because
 in many cases it was not able to find a reasonable policy in the
 amount of planning time allotted.
 

@@ -17,13 +17,13 @@ has never previously been, but has seen similar rooms with similar
 objects in the past. We formalize this problem as optimizing a learning or planning
 algorithm for a set of environments drawn from a distribution.
 
-In both cases, we assume environments are defined by a Markov decision process (MDP). An MDP is define by the tuple $(S, A, T, R, s_0)$, where $S$ is the state space; $A$ is the action set; $T(s' | s, a)$ is the transition dynamics, which specifies the probability of transitioning to state $s'$ after taking action $a$ in state $s$; $R(s, a, s')$ is the reward function, which specifies the reward received by the agent for taking action $a$ in state $s$ and then transitioning to state $s'$; and $s_0$ is an initial state.
+In both cases, we assume environments are defined by a Markov decision process (MDP). An MDP is defined by the tuple $(S, A, T, R, s_0)$, where $S$ is the state space; $A$ is the action set; $T(s' | s, a)$ is the transition dynamics, which specifies the probability of transitioning to state $s'$ after taking action $a$ in state $s$; $R(s, a, s')$ is the reward function, which specifies the reward received by the agent for taking action $a$ in state $s$ and then transitioning to state $s'$; and $s_0$ is an initial state.
 
 The goal of planning or learning in an MDP is to find a (near-)optimal policy $\pi$ that maps states to actions. A policy is typically considered optimal if following it from the initial state maximizes the expected discounted future reward.
 %$E \left[ \sum_{t=0}^{\infty} \gamma^t r_t \mid s_0, \pi \right]$, where $\gamma \in [0, 1]$ is a discount factor specifying how much the agent prefers immediate rewards over more distant rewards and $r_t$ is the reward received at time $t$. 
-For a planning, the agent has complete access to the MDP and can search for a policy before acting in the world. In reinforcement learning (RL), the agent does not have access to the transition dynamics or reward function and must learn how to act through interaction.
+In a planning problem, the agent has complete access to the MDP and can search for a policy before acting in the world. In reinforcement learning (RL), the agent does not have access to the transition dynamics or reward function and must learn how to act through interaction with the environment.
 
-In our learning setting, an agent is given a set of sample training MDPs on which to optimize its performance. In the case of planning, learning from the training set is used to decrease computation time. In RL, learning from the training set is used to decrease learning time in new environmetns.
+In our learning setting, an agent is given a set of sample training MDPs on which to optimize its performance. In the case of planning, learning from the training set is used to decrease planning computation time in future environments. In RL, learning from the training set is used to decrease learning time in new environments.
 
 We present results for the learning to plan and learning to learn setting. In the learning to plan setting we present learnable \emph{goal-based action priors} that accelerate planning on related MDPs. In the learning to learn setting, we present \emph{sample-optimized Rademacher complexity},
 which is a formal mechanism for assessing the risk in choosing a learning algorithm tuned on a training set drawn from the distribution for use on the entire distribution.
@@ -33,7 +33,7 @@ which is a formal mechanism for assessing the risk in choosing a learning algori
 \input{plan}
 
 \section{Learning to Learn}
-For the case of optimizing a learning algorithm for a distribution of MDPs, we seek the answer the question: How do you know if your reinforcement-learning (RL) algorithm is the right one for your problem? How can you tell if you are at risk for overfitting? Or underfitting?
+For the case of optimizing a learning algorithm for a distribution of MDPs, we seek to answer the question: How do you know if your reinforcement-learning (RL) algorithm is the right one for your problem? How can you tell if you are at risk for overfitting? Or underfitting?
 
 %Overfitting is the phenomenon in which a learning method optimizes itself to noise in its training examples and is therefore likely to miss the function that best generalizes to new data. Recognized as a central problem in supervised machine learning~\cite{Mitchell:1997:ML:541177}, the problem also appears in other optimization settings such as choosing the best optimizer for a class of problems~\cite{DBLP:journals/jmlr/YoonFG08,sorg2010internal}
 %aaai-fall-peter, Polya1956
@@ -85,7 +85,7 @@ With probability $1-\delta$
 $$E_{{F_k}}[ E_z[f^k_S] - \hat{E}_S[f^k_S] ] \leq \frac{2}{\ell} \sum_{j=1}^\ell R_S(F^j_k)+ 5\sqrt{\frac{\ln (3/\delta)}{2m}},$$
 where $F_k^j$ is the set of $k$ evaluation functions for the $k$ algorithms of the $j$th subset used to form our ensemble. Due to space constraints, we have omitted the proof of this theorem.
 
-Using this weak form of optmization, we can now compute generalization error bounds for our training data. Figure~\ref{fig:d1_750} shows how our estimated error bound in the 5-state chain problems using our weak optimizer tracks the true performance on the full distribution. It correctly predicts that on distribution~1 variable initialization should be prefered even with only one training sample, but on distribution~2, constant initialization should be preferred at first. The conservative nature of the bounds means that there is a need for a large training set before they can be convinced that variable initialization is not overfitting. Fortunately, the two sets of algorithm have similar performance.
+Using this weak form of optmization, we can now compute generalization error bounds for our training data. Figure~\ref{fig:d1_750} shows how our estimated error bound in the 5-state chain problems using our weak optimizer tracks the true performance on the full distribution. It correctly predicts that on distribution~1 variable initialization should be prefered even with only one training sample, but on distribution~2, constant initialization should be preferred at first. The conservative nature of the bounds means that there is a need for a large training set before they can be convinced that variable initialization is not overfitting. Fortunately, the two sets of algorithm have similar performance after a handful of training samples.
 \begin{figure*}
 \centering
 \begin{tabular}{cc}
